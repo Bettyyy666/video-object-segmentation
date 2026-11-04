@@ -1,0 +1,9 @@
+torch
+ultralytics>=8.3      # YOLO-World (downloads yolov8x-worldv2.pt and the CLIP text encoder on first use)
+pycocotools
+opencv-python
+numpy
+# SAM 2: pip install "git+https://github.com/facebookresearch/sam2.git"; checkpoint in checkpoints/
+# ffmpeg: the system one if on PATH, else the binary bundled with imageio-ffmpeg
+imageio-ffmpeg
+transformers          # Grounding DINO, only for categories YOLO-World cannot see in a video

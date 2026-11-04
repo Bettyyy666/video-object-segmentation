@@ -1,0 +1,22 @@
+{
+  "_comment": "Written by an AI coding assistant from the task sheet text only (no video), reviewed by me. prompts = [YOLO-World prompt, output category]. Several prompts may map to one category. size_split: tracks voted into a category are split into two names by mask area (task sheet says there are both).",
+
+  "coil_and_stow_four_cables": {
+    "prompts": [["cable", "cable"], ["coiled cable", "cable"], ["cable bundle", "cable"],
+                ["velcro strap", "strap"], ["strap", "strap"],
+                ["organizer box with compartments", "organizer"]],
+    "deformable": ["cable", "strap"]
+  },
+
+  "fold_four_towels": {
+    "prompts": [["towel", "towel"], ["folded towel", "towel"], ["stack of folded towels", "towel"]],
+    "deformable": ["towel"]
+  },
+
+  "sort_cutlery_drawer_insert": {
+    "prompts": [["fork", "fork"], ["knife", "knife"], ["spoon", "spoon"], ["teaspoon", "spoon"],
+                ["wooden spoon", "wooden utensil"], ["wooden spatula", "wooden utensil"],
+                ["cutlery tray", "insert"], ["drawer organizer insert", "insert"]],
+    "size_split": {"spoon": {"small": "teaspoon", "large": "dinner spoon"}}
+  }
+}
