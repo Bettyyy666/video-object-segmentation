@@ -1,6 +1,6 @@
 """One command per video:
 
-    python segment.py videos/12_fold_four_towels.mp4 --task-sheets task_sheets.json --out results
+    python segment.py data/12_fold_four_towels.mp4 --task-sheets data/task_sheets.json --out results
 
 writes results/12_fold_four_towels.json, results/12_fold_four_towels_overlay.mp4,
 working files in results/work/12_fold_four_towels/ (frames, label maps, track log).
@@ -18,7 +18,7 @@ from seg import finalize, vocab
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("video")
-    ap.add_argument("--task-sheets", default="task_sheets.json")
+    ap.add_argument("--task-sheets", default="data/task_sheets.json")
     ap.add_argument("--overrides", default="configs/overrides.json")
     ap.add_argument("--out", default="results")
     ap.add_argument("--device", default="auto", help="auto | cuda | mps | cpu")
@@ -31,7 +31,7 @@ def main():
         ap.error("--no-verify and --reverify cannot be used together")
 
     if not os.path.isfile(a.video):
-        raise SystemExit(f"video not found: {a.video}  (run `ls videos` to see the exact file names)")
+        raise SystemExit(f"video not found: {a.video}  (run `ls data` to see the exact file names)")
     vid = os.path.splitext(os.path.basename(a.video))[0]
     work = os.path.join(a.out, "work", vid)
     os.makedirs(work, exist_ok=True)

@@ -1,7 +1,7 @@
 """Tunable constants."""
 
 # ---- models ----
-DET_MODEL = "yolov8x-worldv2.pt"                  # YOLO-World, open vocabulary
+DET_MODEL = "checkpoints/yolov8x-worldv2.pt"         # YOLO-World, open vocabulary
 SAM2_MODELS = {                                   # --sam2 <name>: (checkpoint, config name inside the sam2 package)
     "tiny": ("checkpoints/sam2.1_hiera_tiny.pt", "configs/sam2.1/sam2.1_hiera_t.yaml"),
     "small": ("checkpoints/sam2.1_hiera_small.pt", "configs/sam2.1/sam2.1_hiera_s.yaml"),

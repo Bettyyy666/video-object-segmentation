@@ -68,7 +68,7 @@ def run(work, prompts, cats, device="cpu"):
     meta = json.load(open(os.path.join(work, "tracks.json")))
     robot = {t["id"] for t in meta["tracks"] if max(t["votes"], key=t["votes"].get) == "robot"}
     dev = "cuda" if device.startswith("cuda") and torch.cuda.is_available() else "cpu"
-    model, prep = clip.load("ViT-B/32", device=dev)
+    model, prep = clip.load("ViT-B/32", device=dev, download_root="checkpoints/clip")
     obj_texts = [(p, c) for p, c in zip(prompts, cats) if c != "robot"]
     texts = [f"a photo of a {p}" for p, _ in obj_texts] + NEGATIVE
     with torch.no_grad():

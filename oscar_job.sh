@@ -16,4 +16,4 @@ source ~/miniforge3/etc/profile.d/conda.sh
 conda activate objseg
 nvidia-smi --query-gpu=name,memory.total --format=csv
 python -c "import torch; print('cuda:', torch.cuda.is_available(), torch.cuda.get_device_name(0))"
-bash run_required.sh videos "${SAM:-base_plus}"
+bash run_required.sh data "${SAM:-base_plus}"

@@ -22,6 +22,7 @@ except ImportError:                     # no torch installed: numpy stand-in for
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
+from seg.ffmpeg import ffmpeg_bin  # noqa: E402
 from seg import config as C, finalize  # noqa: E402
 from seg.tracker import Tracker  # noqa: E402
 
@@ -142,7 +143,7 @@ def main():
             img[m] = COLORS[name]
         cv2.imwrite(os.path.join(src, f"{f:06d}.png"), img)
     video = os.path.join(tmp, "26_sort_cutlery_drawer_insert.mp4")
-    subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-framerate", "50", "-i", os.path.join(src, "%06d.png"),
+    subprocess.run([ffmpeg_bin(), "-loglevel", "error", "-y", "-framerate", "50", "-i", os.path.join(src, "%06d.png"),
                     "-c:v", "libx264", "-crf", "10", "-pix_fmt", "yuv420p", video], check=True)
 
     tr = Tracker.__new__(Tracker)

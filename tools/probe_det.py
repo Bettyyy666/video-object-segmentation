@@ -31,7 +31,7 @@ def raw_prompt_maxima(preds, n_prompts):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("video")
-    ap.add_argument("--task-sheets", default="task_sheets.json")
+    ap.add_argument("--task-sheets", default="data/task_sheets.json")
     ap.add_argument("--overrides", default="configs/overrides.json")
     ap.add_argument("--extra", default="", help="comma-separated extra diagnostic prompts")
     ap.add_argument("--n", type=int, default=16)

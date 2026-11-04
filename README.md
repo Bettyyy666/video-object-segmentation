@@ -11,15 +11,15 @@ pip install -r requirements.txt     # ultralytics (YOLO-World + CLIP), transform
 SAM2_BUILD_CUDA=0 pip install "git+https://github.com/facebookresearch/sam2.git"   # CUDA 机器上去掉 SAM2_BUILD_CUDA=0
 mkdir -p checkpoints && curl -L -o checkpoints/sam2.1_hiera_base_plus.pt \
     https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_base_plus.pt
-# 每段视频一条命令（task_sheets.json 放在仓库根目录；设备自动选 cuda > mps > cpu）
-python segment.py videos/12_fold_four_towels.mp4 --task-sheets task_sheets.json --out results
-python segment.py videos/09_coil_and_stow_four_cables.mp4 --task-sheets task_sheets.json --out results
-python segment.py videos/26_sort_cutlery_drawer_insert.mp4 --task-sheets task_sheets.json --out results
+# 每段视频一条命令（task_sheets.json 放在 data/ 下；设备自动选 cuda > mps > cpu）
+python segment.py data/12_fold_four_towels.mp4 --task-sheets data/task_sheets.json --out results
+python segment.py data/09_coil_and_stow_four_cables.mp4 --task-sheets data/task_sheets.json --out results
+python segment.py data/26_sort_cutlery_drawer_insert.mp4 --task-sheets data/task_sheets.json --out results
 # Slurm（Brown Oscar）：每段一个 GPU 任务，跑完自动自查 + 报告
 bash oscar_run.sh                          # 三段必做；OUT=results_full bash oscar_run.sh ... 换输出目录
-bash run_all.sh videos auto base_plus      # 全部 30 段
+bash run_all.sh data auto base_plus      # 全部 30 段
 # 自查
-python tools/check_output.py results/12_fold_four_towels.json --video videos/12_fold_four_towels.mp4 \
+python tools/check_output.py results/12_fold_four_towels.json --video data/12_fold_four_towels.mp4 \
     --overlay results/12_fold_four_towels_overlay.mp4 --dump results/check/12_fold_four_towels --sample 20
 python tools/report.py results 12_fold_four_towels   # 期望 vs 实际数量、每个 id 的事件、CLIP 分数、检测决定
 python tests/test_finalize.py        # 输出格式、数量分配、相关性规则（CPU）

@@ -13,6 +13,7 @@ import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
+from seg.ffmpeg import ffmpeg_bin  # noqa: E402
 from seg import finalize  # noqa: E402
 
 T, W, H, FPS = 60, 1280, 720, 50.0
@@ -61,7 +62,7 @@ def main():
                "15": {"object": 0.9, "cats": {"towel": 0.9}, "n": 8},
                "7": {"object": 0.95, "cats": {"towel": 0.95}, "n": 8}}, open(os.path.join(work, "verify.json"), "w"))
     video = os.path.join(tmp, "x.mp4")
-    subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-framerate", "50", "-i",
+    subprocess.run([ffmpeg_bin(), "-loglevel", "error", "-y", "-framerate", "50", "-i",
                     os.path.join(work, "frames", "%06d.jpg"), "-c:v", "libx264", "-pix_fmt", "yuv420p", video],
                    check=True)
     out_json, out_ov = os.path.join(tmp, "x.json"), os.path.join(tmp, "x_overlay.mp4")

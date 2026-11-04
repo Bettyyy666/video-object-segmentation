@@ -69,9 +69,9 @@ class DiagnosticsTests(unittest.TestCase):
         self.assertEqual(count([("Place one basket", "3")]), {"basket": 3})
         # All supplied task sheets still parse; no per-video quantity override is used.
         for i in range(1, 31):
-            counts = vocab.build("task_sheets.json", f"{i:02d}_test")[-1]
+            counts = vocab.build("data/task_sheets.json", f"{i:02d}_test")[-1]
             self.assertTrue(all(isinstance(n, int) and n > 0 for n in counts.values()))
-        counts = vocab.build("task_sheets.json", "26_sort_cutlery_drawer_insert")[-1]
+        counts = vocab.build("data/task_sheets.json", "26_sort_cutlery_drawer_insert")[-1]
         self.assertEqual(counts, {"fork": 2, "knife": 2, "spoon": 4, "wooden utensil": 1, "insert": 1})
 
     def test_route_unseen_categories_to_grounding_dino(self):

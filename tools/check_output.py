@@ -1,6 +1,6 @@
 """Self-check without ground truth.
 
-    python tools/check_output.py results/12_fold_four_towels.json --video videos/12_fold_four_towels.mp4 \
+    python tools/check_output.py results/12_fold_four_towels.json --video data/12_fold_four_towels.mp4 \
         --overlay results/12_fold_four_towels_overlay.mp4 --dump results/check/12_fold_four_towels
 
 1. format: every frame in order, sizes, ids declared, RLE decodes, no pixel in two masks, overlay matches input
